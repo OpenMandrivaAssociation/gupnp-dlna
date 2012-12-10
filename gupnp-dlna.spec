@@ -93,3 +93,14 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/lib%{name}-%{api}.so
 %{_datadir}/gir-1.0/GUPnPDLNA-%{girmajor}.gir
 
+
+
+%changelog
+* Sat May 05 2012 Alexander Khrukin <akhrukin@mandriva.org> 0.6.6-1
++ Revision: 796665
+- version update 0.6.6
+
+* Fri Apr 15 2011 Funda Wang <fwang@mandriva.org> 0.6.1-1
++ Revision: 653183
+- import gupnp-dlna
+
