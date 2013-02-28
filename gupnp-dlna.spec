@@ -1,20 +1,20 @@
 %define url_ver %(echo %{version} | cut -d. -f1,2)
 
-%define api		1.0
-%define major		2
-%define girmajor	1.0
-%define libname		%mklibname %{name} %{api} %{major}
-%define girname		%mklibname %{name}-gir %{girmajor}
-%define devname		%mklibname -d %{name}
+%define api 1.0
+%define major 2
+%define girmajor 1.0
+%define libname %mklibname %{name} %{api} %{major}
+%define girname %mklibname %{name}-gir %{girmajor}
+%define devname %mklibname -d %{name}
 
-Name:           gupnp-dlna
-Version:        0.6.6
-Release:        1
-Summary:        A collection of helpers for building UPnP dlna applications
+Name:		gupnp-dlna
+Version:	0.6.6
+Release:	2
+Summary:	A collection of helpers for building UPnP dlna applications
 Group:		System/Libraries
-License:        LGPLv2+
-URL:            http://www.gupnp.org/
-Source0:        http://download.gnome.org/sources/%{name}/%{url_ver}/%{name}-%{version}.tar.xz
+License:	LGPLv2+
+URL:		http://www.gupnp.org/
+Source0:		http://download.gnome.org/sources/%{name}/%{url_ver}/%{name}-%{version}.tar.xz
 BuildRequires:	pkgconfig(libxml-2.0) >= 2.5.0
 BuildRequires:	pkgconfig(gstreamer-0.10) >= 0.10.29.2
 BuildRequires:	pkgconfig(gstreamer-pbutils-0.10) >= 0.10.32
@@ -31,7 +31,7 @@ a given profile, etc.
 
 %package -n %{libname}
 Summary:	A collection of helpers for building UPnP DLNA applications
-Group:		System/Libraries
+Group:	System/Libraries
 
 %description -n %{libname}
 GUPnP is an object-oriented open source framework for creating UPnP
@@ -67,6 +67,7 @@ GObject Introspection interface description for %{name}.
 %configure2_5x \
 	--disable-static \
 	--enable-introspection=yes
+
 %make
 
 %install
