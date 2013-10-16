@@ -9,7 +9,7 @@
 
 Name:		gupnp-dlna
 Version:	0.6.6
-Release:	2
+Release:	3
 Summary:	A collection of helpers for building UPnP dlna applications
 Group:		System/Libraries
 License:	LGPLv2+
