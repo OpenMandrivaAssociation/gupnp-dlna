@@ -65,6 +65,7 @@ GObject Introspection interface description for %{name}.
 
 %build
 %configure2_5x \
+	--disable-static \
 	--enable-introspection=yes
 
 %make
