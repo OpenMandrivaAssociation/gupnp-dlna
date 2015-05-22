@@ -64,7 +64,7 @@ GObject Introspection interface description for %{name}.
 %setup -q
 
 %build
-%configure \
+%configure2_5x \
 	--enable-introspection=yes
 
 %make
