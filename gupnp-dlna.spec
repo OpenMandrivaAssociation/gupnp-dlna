@@ -1,23 +1,23 @@
 %define url_ver %(echo %{version} | cut -d. -f1,2)
 
-%define api 1.0
-%define major 2
-%define girmajor 1.0
-%define libname %mklibname %{name} %{api} %{major}
+%define api 2.0
+%define major 3
+%define girmajor 2.0
+%define libname %mklibname %{name}-gst %{api} %{major}
 %define girname %mklibname %{name}-gir %{girmajor}
 %define devname %mklibname -d %{name}
 
 Name:		gupnp-dlna
-Version:	0.6.6
-Release:	6
+Version:	0.10.2
+Release:	1
 Summary:	A collection of helpers for building UPnP dlna applications
 Group:		System/Libraries
 License:	LGPLv2+
 URL:		http://www.gupnp.org/
 Source0:		http://download.gnome.org/sources/%{name}/%{url_ver}/%{name}-%{version}.tar.xz
 BuildRequires:	pkgconfig(libxml-2.0) >= 2.5.0
-BuildRequires:	pkgconfig(gstreamer-0.10) >= 0.10.29.2
-BuildRequires:	pkgconfig(gstreamer-pbutils-0.10) >= 0.10.32
+BuildRequires:	pkgconfig(gstreamer-1.0)
+BuildRequires:	pkgconfig(gstreamer-pbutils-1.0)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
 
 %description
@@ -64,8 +64,7 @@ GObject Introspection interface description for %{name}.
 %setup -q
 
 %build
-%configure2_5x \
-	--disable-static \
+%configure \
 	--enable-introspection=yes
 
 %make
@@ -78,30 +77,22 @@ find %{buildroot} -name "*.la" -delete
 
 %files
 %{_bindir}/*
-%{_datadir}/%{name}
+%{_datadir}/%{name}-%{girmajor}
+%{_libdir}/%{name}
 
 %files -n %{libname}
 %doc AUTHORS COPYING README
-%{_libdir}/lib%{name}-%{api}.so.%{major}*
+%{_libdir}/lib%{name}*%{api}.so.%{major}*
 
 %files -n %{girname}
 %{_libdir}/girepository-1.0/GUPnPDLNA-%{girmajor}.typelib
+%{_libdir}/girepository-1.0/GUPnPDLNAGst-%{girmajor}.typelib
 
 %files -n %{devname}
-%doc %{_datadir}/gtk-doc/html/%{name}
+%doc %{_datadir}/gtk-doc/html/%{name}*
 %{_includedir}/*
-%{_libdir}/pkgconfig/%{name}-%{api}.pc
-%{_libdir}/lib%{name}-%{api}.so
+%{_libdir}/pkgconfig/*.pc
+%{_libdir}/lib%{name}*-%{api}.so
 %{_datadir}/gir-1.0/GUPnPDLNA-%{girmajor}.gir
-
-
-
-%changelog
-* Sat May 05 2012 Alexander Khrukin <akhrukin@mandriva.org> 0.6.6-1
-+ Revision: 796665
-- version update 0.6.6
-
-* Fri Apr 15 2011 Funda Wang <fwang@mandriva.org> 0.6.1-1
-+ Revision: 653183
-- import gupnp-dlna
+%{_datadir}/gir-1.0/GUPnPDLNAGst-%{girmajor}.gir
 
