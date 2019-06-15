@@ -8,7 +8,7 @@
 %define devname %mklibname -d %{name}
 
 Name:		gupnp-dlna
-Version:	0.10.2
+Version:	0.10.5
 Release:	1
 Summary:	A collection of helpers for building UPnP dlna applications
 Group:		System/Libraries
@@ -19,6 +19,9 @@ BuildRequires:	pkgconfig(libxml-2.0) >= 2.5.0
 BuildRequires:	pkgconfig(gstreamer-1.0)
 BuildRequires:	pkgconfig(gstreamer-pbutils-1.0)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
+BuildRequires:	gtk-doc
+BuildRequires:	vala-tools
+BuildRequires:	pkgconfig(vapigen)
 
 %description
 GUPnP is an object-oriented open source framework for creating UPnP devices and
@@ -46,8 +49,10 @@ a given profile, etc.
 Summary:	Development package for %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
+Requires:	%{girname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 Provides:	lib%{name}-devel = %{version}-%{release}
+Conflicts:	%{_lib}gupnp-dlna2.0_3 < 0.10.2
 
 %description -n %{devname}
 Files for development with %{name}.
@@ -67,10 +72,10 @@ GObject Introspection interface description for %{name}.
 %configure \
 	--enable-introspection=yes
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 #we don't want these
 find %{buildroot} -name "*.la" -delete
@@ -95,4 +100,4 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/lib%{name}*-%{api}.so
 %{_datadir}/gir-1.0/GUPnPDLNA-%{girmajor}.gir
 %{_datadir}/gir-1.0/GUPnPDLNAGst-%{girmajor}.gir
-
+%{_datadir}/vala/vapi/*
