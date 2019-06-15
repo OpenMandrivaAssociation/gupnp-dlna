@@ -100,4 +100,4 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/lib%{name}*-%{api}.so
 %{_datadir}/gir-1.0/GUPnPDLNA-%{girmajor}.gir
 %{_datadir}/gir-1.0/GUPnPDLNAGst-%{girmajor}.gir
-
+%{_datadir}/vala/vapi/*
