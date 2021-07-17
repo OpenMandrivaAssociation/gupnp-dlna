@@ -1,15 +1,16 @@
 %define url_ver %(echo %{version} | cut -d. -f1,2)
+%define _disable_ld_no_undefined 1
 
 %define api 2.0
-%define major 3
+%define major 4
 %define girmajor 2.0
 %define libname %mklibname %{name}-gst %{api} %{major}
 %define girname %mklibname %{name}-gir %{girmajor}
 %define devname %mklibname -d %{name}
 
 Name:		gupnp-dlna
-Version:	0.10.5
-Release:	2
+Version:	0.11.0
+Release:	1
 Summary:	A collection of helpers for building UPnP dlna applications
 Group:		System/Libraries
 License:	LGPLv2+
@@ -19,9 +20,10 @@ BuildRequires:	pkgconfig(libxml-2.0) >= 2.5.0
 BuildRequires:	pkgconfig(gstreamer-1.0)
 BuildRequires:	pkgconfig(gstreamer-pbutils-1.0)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
+BuildRequires:	pkgconfig(vapigen)
+BuildRequires:	meson
 BuildRequires:	gtk-doc
 BuildRequires:	vala-tools
-BuildRequires:	pkgconfig(vapigen)
 
 %description
 GUPnP is an object-oriented open source framework for creating UPnP devices and
@@ -69,13 +71,13 @@ GObject Introspection interface description for %{name}.
 %setup -q
 
 %build
-%configure \
-	--enable-introspection=yes
+%meson  \
+        -Dgtk_doc=true
 
-%make_build
+%meson_build
 
 %install
-%make_install
+%meson_install
 
 #we don't want these
 find %{buildroot} -name "*.la" -delete
