@@ -2,7 +2,7 @@
 %define _disable_ld_no_undefined 1
 
 %define api 2.0
-%define major 3
+%define major 4
 %define girmajor 2.0
 %define libname %mklibname %{name}-gst %{api} %{major}
 %define girname %mklibname %{name}-gir %{girmajor}
@@ -71,7 +71,8 @@ GObject Introspection interface description for %{name}.
 %setup -q
 
 %build
-%meson
+%meson  \
+        -Dgtk_doc=true
 
 %meson_build
 
@@ -87,7 +88,7 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/%{name}
 
 %files -n %{libname}
-%doc AUTHORS COPYING README.md
+%doc AUTHORS COPYING README
 %{_libdir}/lib%{name}*%{api}.so.%{major}*
 
 %files -n %{girname}
