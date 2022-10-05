@@ -9,7 +9,7 @@
 %define devname %mklibname -d %{name}
 
 Name:		gupnp-dlna
-Version:	0.11.0
+Version:	0.12.0
 Release:	1
 Summary:	A collection of helpers for building UPnP dlna applications
 Group:		System/Libraries
