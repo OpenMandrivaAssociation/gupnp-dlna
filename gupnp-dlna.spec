@@ -14,7 +14,7 @@ Release:	2
 Summary:	A collection of helpers for building UPnP dlna applications
 Group:		System/Libraries
 License:	LGPLv2+
-URL:		http://www.gupnp.org/
+URL:		https://www.gupnp.org/
 Source0:		http://download.gnome.org/sources/%{name}/%{url_ver}/%{name}-%{version}.tar.xz
 BuildRequires:	pkgconfig(libxml-2.0) >= 2.5.0
 BuildRequires:	pkgconfig(gstreamer-1.0)
